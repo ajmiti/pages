@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Claude Efficiently — Infotech Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+<style>
+:root{
+  --it-blue-one:#0078F0;
+  --it-blue-two:#2D1E73;
+  --it-ultraviolet:#6C68F4;
+  --it-teal:#00C2C2;
+  --it-midnight:#141446;
+  --it-asphalt:#445666;
+  --it-orange:#F48F16;
+  --it-white:#FFFFFF;
+  --it-off-white:#F4F6FB;
+  --border:#E2E6EF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--it-off-white);color:var(--it-asphalt);line-height:1.55;}
+.material-symbols-outlined{
+  font-family:'Material Symbols Outlined';
+  font-weight:normal;font-style:normal;line-height:1;
+  letter-spacing:normal;text-transform:none;display:inline-block;
+  white-space:nowrap;word-wrap:normal;direction:ltr;
+  font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px;}
+
+/* Header / hero */
+.hero{background:var(--it-midnight);color:#fff;padding:48px 0 56px;position:relative;overflow:hidden;}
+.hero .wrap{padding-bottom:0;}
+.topbar{background:#fff;border-bottom:1px solid var(--border);}
+.topbar .wrap{padding-top:18px;padding-bottom:18px;}
+.logo-img{height:34px;width:auto;display:block;}
+.hero h1{font-size:46px;font-weight:700;color:#fff;line-height:1.1;max-width:760px;}
+.hero p{font-size:18px;color:#66AEF6;margin-top:18px;max-width:680px;}
+.pixels{position:absolute;top:32px;right:32px;display:grid;grid-template-columns:repeat(4,16px);gap:6px;opacity:.9;}
+.pixels span{width:16px;height:16px;border-radius:3px;}
+
+/* Why it matters band */
+.why{background:var(--it-blue-two);color:#fff;padding:26px 0;}
+.why .wrap{padding-bottom:0;display:flex;gap:18px;align-items:flex-start;}
+.why .material-symbols-outlined{color:var(--it-teal);font-size:30px;flex-shrink:0;}
+.why p{color:#cfd8e6;font-size:15px;}
+.why b{color:#fff;}
+
+/* Jump nav */
+.jumpnav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 10px rgba(20,20,70,0.05);}
+.jumpnav .wrap{padding-top:0;padding-bottom:0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.jumpnav .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--it-asphalt);margin-right:6px;padding:14px 0;}
+.jumpnav a{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--it-blue-two);text-decoration:none;padding:9px 14px;border-radius:8px;transition:background .15s,color .15s;}
+.jumpnav a .material-symbols-outlined{font-size:18px;color:var(--it-blue-one);}
+.jumpnav a:hover{background:var(--it-off-white);}
+.jumpnav a:hover .material-symbols-outlined{color:var(--it-blue-two);}
+:target{scroll-margin-top:64px;}
+
+/* Sections */
+.section-head{display:flex;align-items:center;gap:14px;margin:54px 0 8px;}
+.section-head:first-of-type{margin-top:46px;}
+.section-head .chip{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;padding:5px 11px;border-radius:20px;}
+.chip.everyone{background:var(--it-blue-one);}
+.chip.power{background:var(--it-ultraviolet);}
+.section-head h2{font-size:27px;font-weight:600;color:var(--it-blue-two);}
+.section-sub{font-size:15px;margin-bottom:24px;max-width:720px;}
+
+/* Tip cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px 22px 20px;box-shadow:0 4px 16px rgba(20,20,70,0.05);}
+.card .ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--it-off-white);margin-bottom:14px;}
+.card .ico .material-symbols-outlined{font-size:24px;color:var(--it-blue-one);}
+.card.pw .ico .material-symbols-outlined{color:var(--it-ultraviolet);}
+.card h3{font-size:17px;font-weight:600;color:var(--it-blue-two);margin-bottom:7px;}
+.card p{font-size:14.5px;}
+.card .do{margin-top:12px;font-size:13px;background:var(--it-off-white);border-left:3px solid var(--it-teal);padding:9px 12px;border-radius:0 6px 6px 0;color:var(--it-asphalt);}
+.card .do b{color:var(--it-blue-two);}
+.card .do a{color:var(--it-blue-one);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(0,120,240,.35);}
+.card .do a:hover{border-bottom-color:var(--it-blue-one);}
+
+/* Model primer */
+.primer{background:#fff;border:1px solid var(--border);border-left:4px solid var(--it-ultraviolet);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;box-shadow:0 4px 16px rgba(20,20,70,0.05);}
+.primer h3{font-size:16px;font-weight:600;color:var(--it-blue-two);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.primer h3 .material-symbols-outlined{color:var(--it-ultraviolet);font-size:20px;}
+.primer p{font-size:14.5px;}
+.primer .dims{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.primer .dim{flex:1;min-width:150px;background:var(--it-off-white);border-radius:8px;padding:12px 14px;}
+.primer .dim b{display:block;color:var(--it-blue-two);font-size:13.5px;margin-bottom:2px;}
+.primer .dim span{font-size:13px;}
+
+/* Model table */
+.tablewrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(20,20,70,0.05);margin-top:8px;}
+table{width:100%;border-collapse:collapse;}
+th,td{text-align:left;padding:13px 18px;font-size:14.5px;}
+th{background:var(--it-blue-two);color:#fff;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em;}
+tbody tr{border-top:1px solid var(--border);}
+tbody tr:nth-child(even){background:#fafbfe;}
+td .m{font-weight:700;color:var(--it-blue-two);}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:14px;color:#fff;}
+.t-h{background:var(--it-teal);}
+.t-s{background:var(--it-blue-one);}
+.t-o{background:var(--it-ultraviolet);}
+
+/* Rule of thumb */
+.rule{background:var(--it-blue-one);color:#fff;border-radius:12px;padding:26px 30px;margin-top:30px;display:flex;gap:18px;align-items:center;}
+.rule .material-symbols-outlined{font-size:40px;color:#fff;flex-shrink:0;}
+.rule h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:4px;}
+.rule p{color:#cfe6ff;font-size:15px;}
+
+footer{text-align:center;margin-top:60px;font-size:12px;color:var(--it-asphalt);}
+footer a{color:var(--it-blue-one);text-decoration:none;}
+
+@media(max-width:720px){
+  .grid{grid-template-columns:1fr;}
+  .hero h1{font-size:34px;}
+  .pixels{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <img class="logo-img" src="https://www.infotechinc.com/wp-content/uploads/01_Primary_RGB_Registered.svg" alt="Infotech">
+  </div>
+</div>
+
+<header class="hero">
+  <div class="pixels">
+    <span style="background:var(--it-blue-one)"></span><span style="background:var(--it-ultraviolet)"></span><span style="background:#66AEF6"></span><span style="background:var(--it-blue-one)"></span>
+    <span style="background:#66AEF6"></span><span style="background:var(--it-blue-one)"></span><span style="background:var(--it-ultraviolet)"></span><span style="background:#66AEF6"></span>
+    <span style="background:var(--it-blue-one)"></span><span style="background:#66AEF6"></span><span style="background:var(--it-blue-one)"></span><span style="background:var(--it-ultraviolet)"></span>
+  </div>
+  <div class="wrap">
+    <h1>Get more from Claude, for fewer tokens</h1>
+    <p>Simple habits that lower cost and keep quality high — start with the basics, then level up.</p>
+  </div>
+</header>
+
+<div class="why">
+  <div class="wrap">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <p><b>Why this matters:</b> On our Enterprise plan, every token is billed. Each message in a long chat re-sends the entire conversation so far, so cost grows the longer a thread runs. A few small habits — fresher chats, sharper prompts, the right model — cut spend meaningfully without slowing anyone down.</p>
+  </div>
+</div>
+
+<nav class="jumpnav">
+  <div class="wrap">
+    <span class="lbl">Jump to</span>
+    <a href="#everyone"><span class="material-symbols-outlined">groups</span>For everyone</a>
+    <a href="#power"><span class="material-symbols-outlined">bolt</span>For power users</a>
+    <a href="#cheatsheet"><span class="material-symbols-outlined">table_chart</span>Cheat sheet</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== EVERYONE ===================== -->
+  <div class="section-head" id="everyone">
+    <span class="chip everyone">For everyone</span>
+    <h2>Seven easy habits</h2>
+  </div>
+  <p class="section-sub">No technical setup required. These work in Claude chat and Cowork and pay off immediately.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">add_comment</span></div>
+      <h3>Start a fresh chat for a new topic</h3>
+      <p>Every reply re-reads the whole thread. A chat that has drifted across five topics is expensive on every turn.</p>
+      <div class="do"><b>Do this:</b> Finished one task? Open a new chat for the next one.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">center_focus_strong</span></div>
+      <h3>Front-load a clear, specific prompt</h3>
+      <p>One detailed request reaches the answer faster than ten vague follow-ups — and each follow-up costs tokens.</p>
+      <div class="do"><b>Do this:</b> Say the goal, format, and any constraints up front.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">content_cut</span></div>
+      <h3>Paste only what's needed</h3>
+      <p>Dropping in a 50-page document to ask about one table makes Claude read all 50 pages every time.</p>
+      <div class="do"><b>Do this:</b> Share the relevant section, not the whole file.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">tune</span></div>
+      <h3>Match the model to the job</h3>
+      <p>A lighter, cheaper model handles summaries, formatting, and quick questions perfectly. Save the heavyweight model for hard reasoning.</p>
+      <div class="do"><b>Do this:</b> Default to a faster model; switch up only when quality needs it. New to the models? See the <a href="#cheatsheet">model cheat sheet</a>.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">bookmark</span></div>
+      <h3>Reuse prompts, don't rebuild them</h3>
+      <p>Re-explaining the same context each time burns tokens. Save prompts that work well.</p>
+      <div class="do"><b>Do this:</b> Keep a notes file of your best prompts and paste them in.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">folder_special</span></div>
+      <h3>Use Projects to set context once</h3>
+      <p>A Project is a dedicated space where you add your reference docs and instructions a single time. Every chat inside it can draw on them — no re-pasting the same background on each new conversation.</p>
+      <div class="do"><b>Do this:</b> For recurring work, create a Project and load the key docs and guidelines there.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">refresh</span></div>
+      <h3>Refine instead of "try again"</h3>
+      <p>Hitting regenerate repeatedly re-runs the full cost each time without telling Claude what to fix.</p>
+      <div class="do"><b>Do this:</b> Say what was wrong — "shorter, more formal" — in one edit.</div>
+    </div>
+
+    <div class="card">
+      <div class="ico"><span class="material-symbols-outlined">short_text</span></div>
+      <h3>Ask for the length you need</h3>
+      <p>Output tokens cost more than input. If you want three bullets, say so instead of getting three pages.</p>
+      <div class="do"><b>Do this:</b> Add "keep it brief" or "just the final answer" when that's all you need.</div>
+    </div>
+
+  </div>
+
+  <!-- ===================== POWER USERS ===================== -->
+  <div class="section-head" id="power">
+    <span class="chip power">For power users</span>
+    <h2>Level up</h2>
+  </div>
+  <p class="section-sub">For heavy users, Claude Code, and anyone building repeatable workflows. More control, more savings.</p>
+
+  <div class="grid">
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">layers</span></div>
+      <h3>Default down, escalate on demand</h3>
+      <p>Pick the smallest model that can do the job and only step up when output quality actually requires it — not by habit.</p>
+      <div class="do"><b>Do this:</b> Use the <a href="#cheatsheet">model cheat sheet</a> to route work to the right tier.</div>
+    </div>
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">cached</span></div>
+      <h3>Use prompt caching for repeated context</h3>
+      <p>When many calls share the same large system prompt or reference doc, caching the stable part can sharply cut input-token cost.</p>
+      <div class="do"><b>Do this:</b> Put the unchanging context first so it can be reused across calls.</div>
+    </div>
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">cleaning_services</span></div>
+      <h3>Clear and compact in Claude Code</h3>
+      <p>Long sessions accumulate context that's re-sent every turn. Resetting keeps each request lean.</p>
+      <div class="do"><b>Do this:</b> Run <b>/clear</b> between unrelated tasks and <b>/compact</b> on long sessions.</div>
+    </div>
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">checklist</span></div>
+      <h3>Batch related questions</h3>
+      <p>Five separate chats each re-establish context. One prompt with five questions shares it.</p>
+      <div class="do"><b>Do this:</b> Group related asks into a single, structured prompt.</div>
+    </div>
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">find_in_page</span></div>
+      <h3>Scope what gets loaded</h3>
+      <p>Pointing at a whole repo or folder loads far more than the task needs. Be precise about files.</p>
+      <div class="do"><b>Do this:</b> Reference specific files; use subagents for big searches so dumps don't bloat context.</div>
+    </div>
+
+    <div class="card pw">
+      <div class="ico"><span class="material-symbols-outlined">functions</span></div>
+      <h3>Use the right tool for the job</h3>
+      <p>Crunching a large dataset row-by-row through the model is slow and costly. A script or formula is exact and nearly free.</p>
+      <div class="do"><b>Do this:</b> Let Claude write the code, then run it on the data.</div>
+    </div>
+
+  </div>
+
+  <!-- ===================== MODEL CHEAT SHEET ===================== -->
+  <div class="section-head" id="cheatsheet">
+    <span class="chip power">Cheat sheet</span>
+    <h2>Which model for which task</h2>
+  </div>
+  <p class="section-sub">A rough guide — the lightest tier that does the job well is usually the right choice.</p>
+
+  <div class="primer">
+    <h3><span class="material-symbols-outlined">school</span>New to the models? A 30-second primer</h3>
+    <p>Claude comes in a few tiers. They all understand plain language and follow instructions — they mainly differ in how much horsepower (and cost) they bring. Picking a heavier model than a task needs is the most common way to overspend.</p>
+    <div class="dims">
+      <div class="dim"><b>Haiku</b><span>Fastest and cheapest. Great for routine, well-defined work.</span></div>
+      <div class="dim"><b>Sonnet</b><span>The balanced middle. A sensible default for most everyday tasks.</span></div>
+      <div class="dim"><b>Opus</b><span>Most capable and most expensive. Worth it for genuinely hard problems.</span></div>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>If the task is…</th><th>Reach for</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Summaries, formatting, extraction, quick Q&amp;A, classification</td><td><span class="tag t-h">Haiku</span></td><td>Fast and lowest cost; plenty capable for routine work</td></tr>
+        <tr><td>Most drafting, everyday coding, analysis, research</td><td><span class="tag t-s">Sonnet</span></td><td>Balanced quality and cost — the sensible default</td></tr>
+        <tr><td>Complex multi-step reasoning, hard debugging, architecture, nuanced writing</td><td><span class="tag t-o">Opus</span></td><td>Most capable; use when the harder problem justifies it</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule">
+    <span class="material-symbols-outlined">savings</span>
+    <div>
+      <h3>The one rule to remember</h3>
+      <p>Shorter context, sharper prompts, smaller model. Reach for more only when the task truly needs it.</p>
+    </div>
+  </div>
+
+  <footer>
+    Infotech · Built to help our teams use Claude well. Questions? Reach out to the AI enablement team. · <a href="https://infotechinc.com">infotechinc.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
