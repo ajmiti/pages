@@ -95,6 +95,25 @@ body{font-family:'Inter',sans-serif;background:var(--it-off-white);color:var(--i
 .card .do a{color:var(--it-blue-one);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(0,120,240,.35);}
 .card .do a:hover{border-bottom-color:var(--it-blue-one);}
 
+/* Prompt examples */
+.card .ex{margin-top:12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.card .ex .row{display:flex;gap:9px;padding:9px 12px;font-size:13px;line-height:1.45;}
+.card .ex .row+.row{border-top:1px solid var(--border);}
+.card .ex .row.good{background:#F4F9FF;}
+.card .ex .etag{flex-shrink:0;font-weight:700;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border-radius:10px;height:fit-content;margin-top:1px;}
+.card .ex .etag.bad{background:var(--it-off-white);color:var(--it-asphalt);}
+.card .ex .etag.good{background:var(--it-blue-one);color:#fff;}
+.card .ex .txt{color:var(--it-asphalt);}
+
+/* Sidebar path + links */
+.aside .path{font-size:12.5px;color:#cfd8e6;margin:9px 0 0;}
+.aside .path b{color:#fff;}
+.aside .links{margin-top:18px;border-top:1px solid rgba(255,255,255,0.14);padding-top:14px;}
+.aside .links .lt{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#66AEF6;margin-bottom:9px;}
+.aside .links a{display:flex;align-items:center;gap:7px;color:#fff;font-size:13px;text-decoration:none;padding:5px 0;}
+.aside .links a .material-symbols-outlined{font-size:16px;color:#66AEF6;}
+.aside .links a:hover{color:#99C9F9;}
+
 /* Model primer */
 .primer{background:#fff;border:1px solid var(--border);border-left:4px solid var(--it-ultraviolet);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;box-shadow:0 4px 16px rgba(20,20,70,0.05);}
 .primer h3{font-size:16px;font-weight:600;color:var(--it-blue-two);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
@@ -196,8 +215,15 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     <div class="card">
       <div class="ico"><span class="material-symbols-outlined">center_focus_strong</span></div>
       <h3>Front-load a clear, specific prompt</h3>
-      <p>One detailed request reaches the answer faster than ten vague follow-ups, and each follow-up costs tokens.</p>
-      <div class="do"><b>Do this:</b> Say the goal, format, and any constraints up front.</div>
+      <p>One detailed request reaches the answer faster than ten vague follow-ups, and each follow-up costs tokens. Name the goal, the format, and any constraints up front.</p>
+      <div class="ex">
+        <div class="row"><span class="etag bad">Vague</span><span class="txt">"Help me with this email."</span></div>
+        <div class="row good"><span class="etag good">Better</span><span class="txt">"Draft a 3-sentence reply declining the meeting below and proposing next week instead. Keep it warm and professional."</span></div>
+      </div>
+      <div class="ex">
+        <div class="row"><span class="etag bad">Vague</span><span class="txt">"Summarize this report."</span></div>
+        <div class="row good"><span class="etag good">Better</span><span class="txt">"Summarize this report in 5 bullets for a non-technical exec, focusing on cost and timeline risks."</span></div>
+      </div>
     </div>
 
     <div class="card">
@@ -225,7 +251,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
       <div class="ico"><span class="material-symbols-outlined">folder_special</span></div>
       <h3>Use Projects to set context once</h3>
       <p>A Project is a dedicated space where you add your reference docs and instructions a single time. Every chat inside it can draw on them, so you don't re-paste the same background on each new conversation.</p>
-      <div class="do"><b>Do this:</b> For recurring work, create a Project and load the key docs and guidelines there.</div>
+      <div class="do"><b>Do this:</b> For recurring work, create a Project and load the key docs and guidelines there. New to them? <a href="https://support.claude.com/en/articles/9517075-what-are-projects">What are Projects?</a></div>
     </div>
 
     <div class="card">
@@ -339,6 +365,13 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
      <div class="action">
        <span class="at">Action item</span>
        <p>Check your spend daily. A quick glance at usage catches a sudden jump early, not at the end of the billing cycle.</p>
+       <p class="path">See your usage: click your name (bottom-left) then <b>Settings &rsaquo; Usage</b>. For a per-person, per-model breakdown of tokens and cost, org admins use <b>Settings &rsaquo; Analytics</b> and can export a daily CSV.</p>
+     </div>
+     <div class="links">
+       <span class="lt">Helpful links</span>
+       <a href="https://support.claude.com/en/articles/12883420-view-usage-analytics-for-team-and-enterprise-plans"><span class="material-symbols-outlined">monitoring</span>View usage analytics</a>
+       <a href="https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work"><span class="material-symbols-outlined">help</span>How usage &amp; limits work</a>
+       <a href="https://support.claude.com/en/articles/9517075-what-are-projects"><span class="material-symbols-outlined">folder_special</span>What are Projects?</a>
      </div>
    </div>
  </aside>
