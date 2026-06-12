@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Using Claude Efficiently — Infotech Guide</title>
+<title>Using Claude Efficiently: Infotech Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
@@ -29,7 +29,21 @@ body{font-family:'Inter',sans-serif;background:var(--it-off-white);color:var(--i
   white-space:nowrap;word-wrap:normal;direction:ltr;
   font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;
 }
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+
+/* Two-column body layout */
+.bodywrap{display:flex;gap:34px;align-items:flex-start;}
+.main{flex:1;min-width:0;}
+.aside{width:312px;flex-shrink:0;position:sticky;top:78px;}
+.aside .panel{background:var(--it-blue-two);color:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 16px rgba(20,20,70,0.10);}
+.aside .panel-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.aside .panel-head .material-symbols-outlined{color:var(--it-orange);font-size:26px;}
+.aside .panel-head .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#66AEF6;}
+.aside h4{font-size:18px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:10px;}
+.aside p{font-size:13.5px;line-height:1.55;color:#cfd8e6;margin-bottom:10px;}
+.aside .action{margin-top:16px;background:rgba(255,255,255,0.06);border-left:3px solid var(--it-orange);border-radius:0 8px 8px 0;padding:13px 15px;}
+.aside .action .at{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--it-orange);margin-bottom:5px;}
+.aside .action p{color:#fff;font-size:13.5px;margin:0;}
 
 /* Header / hero */
 .hero{background:var(--it-midnight);color:#fff;padding:48px 0 56px;position:relative;overflow:hidden;}
@@ -113,6 +127,10 @@ td .m{font-weight:700;color:var(--it-blue-two);}
 footer{text-align:center;margin-top:60px;font-size:12px;color:var(--it-asphalt);}
 footer a{color:var(--it-blue-one);text-decoration:none;}
 
+@media(max-width:980px){
+  .bodywrap{flex-direction:column;}
+  .aside{width:100%;position:static;top:auto;}
+}
 @media(max-width:720px){
   .grid{grid-template-columns:1fr;}
   .hero h1{font-size:34px;}
@@ -136,14 +154,14 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
   </div>
   <div class="wrap">
     <h1>Get more from Claude, for fewer tokens</h1>
-    <p>Simple habits that lower cost and keep quality high — start with the basics, then level up.</p>
+    <p>Simple habits that lower cost and keep quality high. Start with the basics, then level up.</p>
   </div>
 </header>
 
 <div class="why">
   <div class="wrap">
     <span class="material-symbols-outlined">lightbulb</span>
-    <p><b>Why this matters:</b> On our Enterprise plan, every token is billed. Each message in a long chat re-sends the entire conversation so far, so cost grows the longer a thread runs. A few small habits — fresher chats, sharper prompts, the right model — cut spend meaningfully without slowing anyone down.</p>
+    <p><b>Why this matters:</b> On our Enterprise plan, every token is billed. Each message in a long chat re-sends the entire conversation so far, so cost grows the longer a thread runs. A few small habits like fresher chats, sharper prompts, and the right model cut spend meaningfully without slowing anyone down.</p>
   </div>
 </div>
 
@@ -156,12 +174,13 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
   </div>
 </nav>
 
-<div class="wrap">
+<div class="wrap bodywrap">
+ <div class="main">
 
   <!-- ===================== EVERYONE ===================== -->
   <div class="section-head" id="everyone">
     <span class="chip everyone">For everyone</span>
-    <h2>Seven easy habits</h2>
+    <h2>Eight easy habits</h2>
   </div>
   <p class="section-sub">No technical setup required. These work in Claude chat and Cowork and pay off immediately.</p>
 
@@ -177,7 +196,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     <div class="card">
       <div class="ico"><span class="material-symbols-outlined">center_focus_strong</span></div>
       <h3>Front-load a clear, specific prompt</h3>
-      <p>One detailed request reaches the answer faster than ten vague follow-ups — and each follow-up costs tokens.</p>
+      <p>One detailed request reaches the answer faster than ten vague follow-ups, and each follow-up costs tokens.</p>
       <div class="do"><b>Do this:</b> Say the goal, format, and any constraints up front.</div>
     </div>
 
@@ -205,7 +224,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     <div class="card">
       <div class="ico"><span class="material-symbols-outlined">folder_special</span></div>
       <h3>Use Projects to set context once</h3>
-      <p>A Project is a dedicated space where you add your reference docs and instructions a single time. Every chat inside it can draw on them — no re-pasting the same background on each new conversation.</p>
+      <p>A Project is a dedicated space where you add your reference docs and instructions a single time. Every chat inside it can draw on them, so you don't re-paste the same background on each new conversation.</p>
       <div class="do"><b>Do this:</b> For recurring work, create a Project and load the key docs and guidelines there.</div>
     </div>
 
@@ -213,7 +232,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
       <div class="ico"><span class="material-symbols-outlined">refresh</span></div>
       <h3>Refine instead of "try again"</h3>
       <p>Hitting regenerate repeatedly re-runs the full cost each time without telling Claude what to fix.</p>
-      <div class="do"><b>Do this:</b> Say what was wrong — "shorter, more formal" — in one edit.</div>
+      <div class="do"><b>Do this:</b> Say what was wrong, like "shorter, more formal," in one edit.</div>
     </div>
 
     <div class="card">
@@ -237,7 +256,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     <div class="card pw">
       <div class="ico"><span class="material-symbols-outlined">layers</span></div>
       <h3>Default down, escalate on demand</h3>
-      <p>Pick the smallest model that can do the job and only step up when output quality actually requires it — not by habit.</p>
+      <p>Pick the smallest model that can do the job and only step up when output quality actually requires it, not by habit.</p>
       <div class="do"><b>Do this:</b> Use the <a href="#cheatsheet">model cheat sheet</a> to route work to the right tier.</div>
     </div>
 
@@ -283,7 +302,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     <span class="chip power">Cheat sheet</span>
     <h2>Which model for which task</h2>
   </div>
-  <p class="section-sub">The tiers all understand plain language and follow instructions — they mainly differ in how much horsepower (and cost) they bring. Picking a heavier model than a task needs is the most common way to overspend, so reach for the lightest tier that does the job well.</p>
+  <p class="section-sub">The tiers all understand plain language and follow instructions. They mainly differ in how much horsepower (and cost) they bring. Picking a heavier model than a task needs is the most common way to overspend, so reach for the lightest tier that does the job well.</p>
 
   <div class="tablewrap">
     <table>
@@ -292,7 +311,7 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
       </thead>
       <tbody>
         <tr><td><span class="tag t-h">Haiku</span></td><td>Fastest and lowest cost</td><td>Summaries, formatting, extraction, quick Q&amp;A, classification</td></tr>
-        <tr><td><span class="tag t-s">Sonnet</span></td><td>Balanced quality and cost — the sensible default</td><td>Most drafting, everyday coding, analysis, research</td></tr>
+        <tr><td><span class="tag t-s">Sonnet</span></td><td>Balanced quality and cost, the sensible default</td><td>Most drafting, everyday coding, analysis, research</td></tr>
         <tr><td><span class="tag t-o">Opus</span></td><td>Most capable and most expensive</td><td>Complex reasoning, hard debugging, architecture, nuanced writing</td></tr>
       </tbody>
     </table>
@@ -306,10 +325,30 @@ footer a{color:var(--it-blue-one);text-decoration:none;}
     </div>
   </div>
 
+ </div><!-- /.main -->
+
+ <aside class="aside">
+   <div class="panel">
+     <div class="panel-head">
+       <span class="material-symbols-outlined">trending_up</span>
+       <span class="lbl">Keep watch</span>
+     </div>
+     <h4>AI tools are a moving target</h4>
+     <p>These tools don't behave like traditional software. Anthropic and other providers can ship changes, like dynamic workflows or subagents that spawn more work, that shift how many tokens a task burns, often overnight.</p>
+     <p>There may be no visible change to the interface and no notification. The product can look identical from one day to the next yet cost 5–20× more to run the same task.</p>
+     <div class="action">
+       <span class="at">Action item</span>
+       <p>Check your spend daily. A quick glance at usage catches a sudden jump early, not at the end of the billing cycle.</p>
+     </div>
+   </div>
+ </aside>
+
+</div><!-- /.bodywrap -->
+
+<div class="wrap">
   <footer>
     Infotech · Built to help our teams use Claude well. Questions? Reach out to the AI enablement team. · <a href="https://infotechinc.com">infotechinc.com</a>
   </footer>
-
 </div>
 </body>
 </html>
